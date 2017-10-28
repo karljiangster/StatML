@@ -1,0 +1,196 @@
+\documentclass[a4paper,12pt]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+%% Useful packages
+\usepackage{amsmath}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\usepackage{amssymb} 
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{dsfont}
+
+\title{ML HW 1}
+\author{Karl Jiang}
+
+
+\begin{document}
+\maketitle 
+
+\section{Softmax} 
+
+\subsection{Problem 1} 
+
+The log odds are given by 
+$$
+\begin{aligned} 
+\textrm{log} \frac{ \hat{p}(y = c_1 | \mathbf{x; W} ) }
+	{ \hat{p}(y = c_2 | \mathbf{x; W} ) } 
+	&= \textrm{log} \bigg[
+	\frac{ \textrm{exp}(\mathbf{w_{c_1}^Tx} ) }
+	{\sum_{y = 1}^C \textrm{exp}( \mathbf{w_y^Tx} ) } \bigg/ 
+	\frac{ \textrm{exp}(\mathbf{w_{c_2}^Tx} ) }
+	{\sum_{y = 1}^C \textrm{exp}( \mathbf{w_y^Tx} ) } 
+	\bigg] \\
+	&= \textrm{log} \bigg[
+	\frac{ \textrm{exp}(\mathbf{w_{c_1}^Tx} ) }
+	{ \textrm{exp}(\mathbf{w_{c_2}^Tx} ) } \bigg] \\ 
+	&= \mathbf{w_{c_1}^Tx - w_{c_2}^Tx} 
+\end{aligned} 
+$$
+
+$\\$
+which is a linear function of $\mathbf{x}$ 
+$\\$ 
+In the special case the $C = 2$: 
+$$
+\begin{aligned} 
+	\frac{ \textrm{exp}(\mathbf{w_1^Tx} ) }
+	{ \textrm{exp}(\mathbf{w_1^Tx} ) + 
+	\textrm{exp}(\mathbf{w_2^Tx} ) } 
+	&= \frac{ 1 }
+	{1 + \frac{ \textrm{exp}(\mathbf{w_1^Tx} ) }
+		  {\textrm{exp}(\mathbf{w_2^Tx} ) } } \\ 
+	&= \frac{1}{1 + \textrm{exp}(\mathbf{w_1^Tx - w_2^Tx} ) }
+	\\ 
+	&= \frac{1}{1 + \textrm{exp}(\mathbf{v^Tx} ) } \\ 
+	&= \mathbf{\sigma(v^Tx)} 
+\end{aligned} 
+$$
+
+$\\$ Where $\mathbf{v = w_1^Tx - w_2^Tx}$, which confirms that there must exist D dimensional vector $\mathbf{v}$ 
+
+\subsection{Problem 2} 
+We shall use a similar methodology in Problem 1. For ease of notation, let $\mathbf{v_{ic} = w_i - w_c}$, for any class $i$ and $c$. In the case $i = c$, $\mathbf{v_{ic} = v_{cc} = 0}$. We'll call the class $c$ the reference class. 
+
+
+$$
+\begin{aligned} 
+\hat{p}(y = i| \mathbf{x; W} )
+	&= \frac{ \textrm{exp}(\mathbf{w_{i}^Tx} ) }
+	{\sum_{y = 1}^C \textrm{exp}( \mathbf{w_y^Tx} ) } \\
+	&= \frac{ \textrm{exp}(\mathbf{w_{i}^Tx} ) }
+	{\textrm{exp}(\mathbf{w_{c}^Tx} ) + 
+	\sum_{y \neq c} \textrm{exp}( \mathbf{w_y^Tx} ) } \bigg/
+	\frac{\textrm{exp}(\mathbf{w_{c}^Tx} ) }
+	{\textrm{exp}(\mathbf{w_{c}^Tx} ) } \\ 
+	&= \frac{ \textrm{exp}(\mathbf{ w_i^Tx - w_c^Tx } ) }
+	{1 + \sum_{y \neq c} \textrm{exp}( \mathbf{w_y^Tx - w_c^Tx} ) } \\  
+	&= \frac{ \textrm{exp}(\mathbf{ v_{ic}^Tx } ) }
+	{1 + \sum_{y \neq c} \textrm{exp}( \mathbf{v_{yc}^Tx} ) }
+\end{aligned} 
+$$
+
+$\\$ We therefore only require $C - 1$ weight vectors as we alreadyknow the new weight vector $\mathbf{ v_{cc} = 0}$ for the reference class. (Hence the $1$ in the denominator)  
+
+\subsection{Problem 3} 
+
+Let's first find the second derivatives. For simplicity, let's eppend the constant vector of 1's to the data matrix, and $w_0$ to the $\mathbf{w}$ such that $w_0 + \mathbf{w^Tx_i \implies w^Tx_i}$  
+
+$\\$ 
+
+Using what we have from the slides, the first partial derivative of the log probabillity with respect to $w_j$ is 
+
+$$ 
+\frac{\partial}{\partial w_j} \textrm{log} p(\mathbf{y|X; w}) = 
+\sum_{i = 1}^N(y_i - \sigma(\mathbf{w^Tx_i}) ) x_{ij} 
+$$
+
+Then taking the second partial is given by 
+$$
+\begin{aligned} 
+\frac{\partial}{\partial w_j \partial w_k} \textrm{log} p(\mathbf{y|X; w}) &= 
+\frac{\partial}{\partial w_k} \sum_{i = 1}^N(y_i - \sigma(\mathbf{w^Tx_i}) ) x_{ij} \\
+&= \sum_{i=1}^N -x_{ij} \frac{\partial \sigma(\mathbf{w^Tx_i})}{\partial \mathbf{w^Tx_i} } \frac{\partial w^Tx}{\partial w_k} \\
+&= -\sum_{i=1}^N x_{ij} x_{ik} \frac{\partial}{\partial \mathbf{w^Tx_i} } \big( \frac{1}{1 + \textrm{exp}(-\mathbf{w^Tx_i} ) } \big) \\
+&= -\sum_{i=1}^N x_{ij}x_{ik} \frac{\textrm{exp}(\mathbf{-w^Tx})}{ 1 + \textrm{exp}(\mathbf{-w^Tx})^2} \\
+&= -\sum_{i=1}^N x_{ij}x_{ik} \sigma(\mathbf{w^Tx_i}) ( 1 - \sigma(\mathbf{w^Tx_i}) ) \\ 
+&= -\mathbf{x_{*j}^T R x_{*k} }  
+\end{aligned}
+$$ 
+
+$\\$
+Where $\mathbf{R_{ii}} = \sigma(\mathbf{w^Tx_i}) ( 1 - \sigma(\mathbf{w^Tx_i}) )$ and $\mathbf{x_{*j}}$ is the jth column of the data matrix $\mathbf{X}$. Therefore, $\mathbf{H = X^TRX}$ 
+
+$\\$ 
+For any $\mathbf{v}$ such that $\mathbf{v^Tv} > 0$, we have 
+
+$$
+\begin{aligned} 
+\mathbf{v^THv = v^T(X^TRX)v = (Xv)^TR(Xv) = \sum_{i=1}^N b_i^2R_{ii} > 0 }  
+\end{aligned} 
+$$
+
+Where $\mathbf{b = Xv}$ and since $b_{ii}^2 > 0 \textrm{ and } R_{ii} > 0$ Now let's look at the first three terms of the Taylor Expansion of the Loss Function $L(\mathbf{w})$ centered at $\mathbf{w^*}$: 
+
+$$
+\begin{aligned} 
+L(\mathbf{w}) &\approx L(\mathbf{w^*}) + \triangledown L\mathbf{(w^*)(w - w^*)} + \frac{1}{2} \mathbf{(w - w^*)^T H (w - w^*)} \\
+&= L(\mathbf{w^*}) + \frac{1}{2} \mathbf{(w - w^*)^T H (w - w^*)}
+\end{aligned} 
+$$
+
+We then use the fact that $\mathbf{H}$ is positive definite so that
+$\frac{1}{2} \mathbf{(w - w^*)^T H (w - w^*)} > 0$ if $\mathbf{w \neq w^*}$.
+Therefore, $L(\mathbf{w}) > L(\mathbf{w^*})$ for all $\mathbf{w \neq w^*}$, and thus the log loss has a unique minimum at $\mathbf{w^*}$  
+ 
+\subsection{Problem 4} 
+
+The log loss of the L2 regularized softmax model with C classes is given by 
+
+$$
+L\mathbf{(X;W;Y)} = -\frac{1}{N}\sum_{i=1}^N \sum_{j = 1}^C 
+t_{ij} log(p_{ij}(y_{i}|\mathbf{x_{i*}; w_{*j} }) ) - \lambda \mathbf{\norm{W}^2}
+$$
+
+Where $\mathbf{t_{i*}}$ is a length c, one hot encoded row vector indicating the correct class of $y_i$. $\mathbf{w_{*j}}$ is a length d column vector of $\mathbf{W}$ $p_{ij}$ is the softmax function for sample i for class j. 
+
+$\\$
+
+Let's take the derivative with respect the a column of $\mathbf{W}$, by first just looking at one sample $L_i$ with respect to $\mathbf{w_{*j}}$. Let's define $d_j = \mathbf{w_{*j}^Tx_{i*}}$
+
+$$
+\begin{aligned} 
+\frac{\partial L_i}{\partial \mathbf{w_{*j}}} &= 
+t_{ij} \frac{ \partial \textrm{log}(p_ij) }{\partial d_{ij}}
+\frac{\partial d_{ij}}{\partial \mathbf{w_{*j} } } + 2\lambda \mathbf{w_{*j} }\\
+&= (p_{ij} - t_{ij}) \mathbf{x_{i*} } + 2\lambda \mathbf{w_{*j} }\
+\end{aligned}
+$$
+
+Which is done after some algebra + calculus. Therefore, the gradient of the total loss with respect to class weights $\mathbf{w_{*j}}$ is given by
+
+$$
+\frac{\partial L(\mathbf{X;W;Y})}{\partial \mathbf{w_{*j}}} = \frac{1}{N} \sum_{i=1}^N \mathbf{x_{i*}}(p_{ij} - t_{ij}) + 2\lambda \mathbf{w_{*j} }\
+$$
+
+Then the gradient of the loss with respect to $\mathbf{W}$ is 
+$$
+\frac{\partial L(\mathbf{X;W;Y})}{\partial \mathbf{W}} = \frac{1}{N} \sum_{i=1}^N \mathbf{x_{i*}}(p_{ij} - t_{ij}) + 2\lambda \mathbf{W }\
+$$
+
+In the stochastic setting: 
+$$
+\frac{\partial L_i(\mathbf{X;W;Y})}{\partial \mathbf{W}} = \mathbf{x_{i*}}(p_{ij} - t_{ij}) + 2\lambda \mathbf{W }\
+$$
+
+Therefore our update rule for SGD is: 
+$$
+\mathbf{W} := \mathbf{W} + \eta( \mathbf{x_{i*}}(p_{ij} - t_{ij}) + 2\lambda \mathbf{W} ) 
+$$
+
+
+
+
+
+\end{document}
+
+
+
