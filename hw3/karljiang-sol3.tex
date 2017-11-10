@@ -1,0 +1,71 @@
+\documentclass[a4paper,12pt]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+%% Useful packages
+\usepackage{amsmath}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\usepackage{amssymb} 
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{dsfont}
+
+\title{ML HW 2}
+\author{Karl Jiang}
+
+
+\begin{document}
+\maketitle 
+
+\section{Decision Trees} 
+
+\subsection{Problem 3: Linearly seperable} 
+
+If the data is linearly seperable, we are able to perfectly classify the N points using the decision tree. This is just the simple case of severely overfitting onto the training data by having one leaf / region for each data point ($N$ leaves / regions). In the best case scenario, only two leaves are required (eg. the data can be perectly split on an axis parallel to x1 or x2). 
+
+$\\$ 
+The depth of the tree is then, in the best case scenario, 1. (1 split). In the worst case scenario, we will have a depth of $N-1$. (Eg. each split has one leaf node on the same side until the $N-1$ split). 
+
+\subsection{Problem 4: Nonlinear seperable} 
+
+Again, we can perfectly classify the $N$ points with $N$ leaves. In the worst case scenario, we are again dealing with $N$ leaves and in the best case, we are dealing with $3$ leaves. If there are only 2 leaves required to perfectly classify the $N$ points, then the data would be linearly seperable (eg. split line parallel to x1 or x2).
+
+$\\$ 
+Therefore, the depth or the tree in the worst case would be $N-1$ and in the best case would be $2$. 
+
+\section{Boosting} 
+
+
+\subsection{Problem 5} 
+
+Let the training error of $h_{T+1}$ under the new weights be $\epsilon_{T+1}'$ and the sum of the updated weights (the normalization constant) be $Z^{t+1}$ Then we have:   
+
+$$
+\begin{aligned} 
+	\epsilon_{T+1}' &= 
+	\sum_{i: y_i \neq h_{t+1}(x_i) }^N W_i^{t+1} \\ 
+	&= \sum_{i: y_i \neq h_{t+1}(x_i) }^N
+	\frac{1}{Z^{t+1}} W_i^{t} e^{
+		-\alpha_{t+1}y_ih_{t+1}(\mathbf{x_i}) } \\
+	&= \frac{e^{-\alpha_{t+1}}}{Z^{t+1}} 
+	\sum_{i: y_i \neq h_{t+1}(x_i) }^N W_i^t \\
+	&= \frac{e^{-\alpha_{t+1}} \sum_{i: y_i \neq h_{t+1}(x_i) }^N W_i^t}{\sum_{i = 1 }^N W_i^{t} 
+		e^{-\alpha_{t+1}y_ih_{t+1}(\mathbf{x_i}) } } \\ 
+	&= \frac{e^{\alpha_{t+1}} \sum_{i: y_i \neq h_{t+1}(x_i) }^N W_i^t}
+	{e^{-\alpha_{t+1}y_ih_{t+1}(\mathbf{x_i}) } \sum_{i: y_i \neq h_{t+1}(x_i)}^N W_i^t + e^{\alpha_{t+1}y_ih_{t+1}(\mathbf{x_i}) } \sum_{i: y_i = h_{t+1}(x_i)}^N W_i^t }  \\ 
+\end{aligned} 
+$$
+
+Now we use the fact that that the weights sum to one at each step and that $\epsilon_{t+1} = \sum_{i: y_i \neq h_{t+1}(x_i)}^N W_i^t$ 
+
+\end{document}
+
+
+    
