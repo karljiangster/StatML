@@ -54,16 +54,35 @@ $$
 	&= \sum_{i: y_i \neq h_{t+1}(x_i) }^N
 	\frac{1}{Z^{t+1}} W_i^{t} e^{
 		-\alpha_{t+1}y_ih_{t+1}(\mathbf{x_i}) } \\
-	&= \frac{e^{-\alpha_{t+1}}}{Z^{t+1}} 
+	&= \frac{e^{\alpha_{t+1}}}{Z^{t+1}} 
 	\sum_{i: y_i \neq h_{t+1}(x_i) }^N W_i^t \\
-	&= \frac{e^{-\alpha_{t+1}} \sum_{i: y_i \neq h_{t+1}(x_i) }^N W_i^t}{\sum_{i = 1 }^N W_i^{t} 
+	&= \frac{e^{\alpha_{t+1}} \sum_{i: y_i \neq h_{t+1}(x_i) }^N W_i^t}{\sum_{i = 1 }^N W_i^{t} 
 		e^{-\alpha_{t+1}y_ih_{t+1}(\mathbf{x_i}) } } \\ 
 	&= \frac{e^{\alpha_{t+1}} \sum_{i: y_i \neq h_{t+1}(x_i) }^N W_i^t}
-	{e^{-\alpha_{t+1}y_ih_{t+1}(\mathbf{x_i}) } \sum_{i: y_i \neq h_{t+1}(x_i)}^N W_i^t + e^{\alpha_{t+1}y_ih_{t+1}(\mathbf{x_i}) } \sum_{i: y_i = h_{t+1}(x_i)}^N W_i^t }  \\ 
+	{e^{\alpha_{t+1}}\sum_{i: y_i \neq h_{t+1}(x_i)}^N W_i^t + e^{-\alpha_{t+1}}\sum_{i: y_i = h_{t+1}(x_i)}^N W_i^t }  \\ 
 \end{aligned} 
 $$
 
-Now we use the fact that that the weights sum to one at each step and that $\epsilon_{t+1} = \sum_{i: y_i \neq h_{t+1}(x_i)}^N W_i^t$ 
+Now we use the fact that that the weights sum to one: $\sum_{i=1}^N W_i^{t} = 1$ at each step and that $\epsilon_{t+1} = \sum_{i: y_i \neq h_{t+1}(x_i)}^N W_i^t$. We also use the fact that $\alpha_{t+1} = \frac{1}{2} \textrm{log}( \frac{1 - \epsilon_{t+1}}{\epsilon_{t+1}} ) $ 
+
+$$
+\begin{aligned}
+    &\implies \frac{e^{\alpha_{t+1}} \sum_{i: y_i \neq h_{t+1}(x_i) }^N W_i^t}
+	{e^{\alpha_{t+1}y_ih_{t+1}(\mathbf{x_i}) } \sum_{i: y_i \neq h_{t+1}(x_i)}^N W_i^t + e^{-\alpha_{t+1}y_ih_{t+1}(\mathbf{x_i}) } \sum_{i: y_i = h_{t+1}(x_i)}^N W_i^t } \\
+    &= \frac{e^{\alpha_{t+1}} \epsilon_{t+1} }{ e^{\alpha_{t+1}} \epsilon_{t+1} + e^{-\alpha_{t+1}} (1 - \epsilon_{t+1} ) } \\
+    &= \frac{e^{2\alpha_{t+1}} \epsilon_{t+1} }{ e^{2\alpha_{t+1}} \epsilon_{t+1} + 1 - \epsilon_{t+1}} \\
+    &= \frac{ \frac{1 - \epsilon_{t+1}}{\epsilon_{t+1}} \epsilon_{t+1}}{\frac{1 - \epsilon_{t+1}}{\epsilon_{t+1}} \epsilon_{t+1} + 1 - \epsilon_{t+1}} \\ 
+    &= \frac{1 - \epsilon_{t+1}}{1 - \epsilon_{t+1} + 1 - \epsilon_{t+1}} \\ 
+    &= \frac{1}{2} 
+\end{aligned} 
+$$
+
+Can we select the same classifier again? That would mean the weighted training error, as we have shown about, would be 
+$\epsilon_{t+1}' = \frac{1}{2}$. Then the weight of the classifier would be 
+$\alpha_{t+1}' = \frac{1}{2} \textrm{log}(\frac{1 - \epsilon_{t+1}'}{\epsilon_{t+1}'}) = \frac{1}{2}\textrm{log}(1) = 0$, so using the same classifier would be pointless as its classification would not considered in $H_{t+1}(\mathbf{x_i})'$. 
+
+\subsection{Problem 6}
+
 
 \end{document}
 
