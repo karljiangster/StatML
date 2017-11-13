@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.7.21)  10 NOV 2017 15:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.8)  12 NOV 2017 21:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -620,23 +620,30 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 (/usr/share/texlive/texmf-dist/tex/latex/doublestroke/dsfont.sty
 Package: dsfont 1995/08/01 v0.1 Double stroke roman fonts
 )
-(./karljiang-sol3.aux)
+(./karljiang-sol3.aux
+
+LaTeX Warning: Label `FigExample' multiply defined.
+
+
+LaTeX Warning: Label `FigExample' multiply defined.
+
+)
 \openout1 = `karljiang-sol3.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
  (/usr/share/texlive/texmf-dist/tex/latex/ucs/ucsencs.def
 File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
 )
@@ -704,7 +711,7 @@ e
 ))
 ABD: EveryShipout initializing macros
 \AtBeginShipoutBox=\box40
-Package hyperref Info: Link coloring ON on input line 24.
+Package hyperref Info: Link coloring ON on input line 28.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -714,43 +721,86 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count145
 )
-LaTeX Info: Redefining \ref on input line 24.
-LaTeX Info: Redefining \pageref on input line 24.
-LaTeX Info: Redefining \nameref on input line 24.
+LaTeX Info: Redefining \ref on input line 28.
+LaTeX Info: Redefining \pageref on input line 28.
+LaTeX Info: Redefining \nameref on input line 28.
 
 (./karljiang-sol3.out) (./karljiang-sol3.out)
 \@outlinefile=\write4
 \openout4 = `karljiang-sol3.out'.
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 26.
+LaTeX Font Info:    Try loading font information for U+msa on input line 30.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 26.
+LaTeX Font Info:    Try loading font information for U+msb on input line 30.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 83.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 83.
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+Underfull \hbox (badness 10000) in paragraph at lines 96--97
+
+ []
+
+<linear.png, id=61, 438.8897pt x 289.08pt>
+File: linear.png Graphic file (type png)
+ <use linear.png>
+Package pdftex.def Info: linear.png used on input line 160.
+(pdftex.def)             Requested size: 438.88863pt x 289.07928pt.
+ [2]
+<nonlinear_O1.png, id=66, 438.8897pt x 289.08pt>
+File: nonlinear_O1.png Graphic file (type png)
+ <use nonlinear_O1.png>
+Package pdftex.def Info: nonlinear_O1.png used on input line 174.
+(pdftex.def)             Requested size: 438.88863pt x 289.07928pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<nonlinear.png, id=67, 439.6425pt x 289.08pt>
+File: nonlinear.png Graphic file (type png)
+ <use nonlinear.png>
+Package pdftex.def Info: nonlinear.png used on input line 184.
+(pdftex.def)             Requested size: 439.64142pt x 289.07928pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[3 <./linear.png>]
+Overfull \vbox (24.98465pt too high) has occurred while \output is active []
+
+
+[4 <./nonlinear_O1.png> <./nonlinear.png>] [5] [6]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 267.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 267.
  (./karljiang-sol3.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 83.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 83.
-Package rerunfilecheck Info: File `karljiang-sol3.out' has not changed.
-(rerunfilecheck)             Checksum: 9A254AAB9DBF93AF1F1BAE0A08331167;307.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 83.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 267.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 267.
+
+
+Package rerunfilecheck Warning: File `karljiang-sol3.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `karljiang-sol3.out':
+(rerunfilecheck)             Before: 1DA72C8E13026D2B0F3B9E678F7360F7;570
+(rerunfilecheck)             After:  A43F02B231408878674A442BDF3A5AA3;570.
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 267.
  ) 
 Here is how much of TeX's memory you used:
- 17611 strings out of 493029
- 324394 string characters out of 6136234
- 409580 words of memory out of 5000000
- 20801 multiletter control sequences out of 15000+600000
- 17966 words of font info for 54 fonts, out of 8000000 for 9000
+ 17650 strings out of 493029
+ 324889 string characters out of 6136234
+ 411702 words of memory out of 5000000
+ 20824 multiletter control sequences out of 15000+600000
+ 18742 words of font info for 55 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,9n,56p,478b,336s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,9n,56p,478b,361s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmbx6.pfb></usr/share/texlive/texmf-dist/
@@ -764,14 +814,15 @@ r12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb>
 are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/te
 xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf/fonts/type
-1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sf
-bx1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/sha
-re/texmf/fonts/type1/public/cm-super/sfrm1440.pfb></usr/share/texmf/fonts/type1
-/public/cm-super/sfrm2074.pfb>
-Output written on karljiang-sol3.pdf (2 pages, 163853 bytes).
+1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sf
+bx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/sha
+re/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1
+/public/cm-super/sfrm1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfr
+m2074.pfb>
+Output written on karljiang-sol3.pdf (6 pages, 223714 bytes).
 PDF statistics:
- 116 PDF objects out of 1000 (max. 8388607)
- 93 compressed objects within 1 object stream
- 8 named destinations out of 1000 (max. 500000)
- 53 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 164 PDF objects out of 1000 (max. 8388607)
+ 129 compressed objects within 2 object streams
+ 19 named destinations out of 1000 (max. 500000)
+ 100 words of extra memory for PDF output out of 10000 (max. 10000000)
 
